@@ -537,6 +537,33 @@ func TestHandlers_Settings_Recipes_ExportSchema(t *testing.T) {
 	})
 }
 
+func TestHandlers_Settings_RTL(t *testing.T) {
+	srv := newServerTest()
+
+	uri := "/settings/rtl"
+
+	t.Run("must be logged in", func(t *testing.T) {
+		assertMustBeLoggedIn(t, srv, http.MethodPost, uri)
+	})
+
+	t.Run("default html dir auth layout is auto", func(t *testing.T) {
+		t.Fail()
+	})
+
+	testcases := []struct {
+		name  string
+		isRTL bool
+	}{
+		{"ltr", false},
+		{"rtl", true},
+	}
+	for _, tc := range testcases {
+		t.Run("dir is "+tc.name, func(t *testing.T) {
+			t.Fail()
+		})
+	}
+}
+
 func TestHandlers_Settings_TabsAdvanced(t *testing.T) {
 	srv := newServerTest()
 

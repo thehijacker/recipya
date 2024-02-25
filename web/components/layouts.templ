@@ -6,7 +6,7 @@ import (
 
 templ layoutAuth(title string) {
 	<!DOCTYPE html>
-	<html lang="en" class="h-full bg-indigo-100 dark:bg-gray-800">
+	<html lang="en" dir="auto" class="h-full bg-indigo-100 dark:bg-gray-800">
 		@head(title)
 		<body class="h-full grid place-content-center">
 			{ children... }
@@ -19,6 +19,7 @@ templ layoutMain(title string, data templates.Data) {
 	<!DOCTYPE html>
 	<html
 		lang="en"
+		dir={ templ.KV("ltr", !data.SettingsData.UserSettings.IsRTL), templ.KV("rtl", data.SettingsData.UserSettings.IsRTL) }
 		class="h-full"
 		_="on htmx:afterSwap
                 if location.pathname is '/recipes' or location.pathname is '/' then
@@ -386,7 +387,7 @@ templ toast() {
 		<div class="hidden alert-error alert-info alert-success alert-warning"></div>
 		<div id="toast_alert" role="alert" class="alert shadow-lg flex">
 			<svg id="toast_icon" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="stroke-current shrink-0 w-6 h-6"></svg>
-			<div class="text-left">
+			<div class="text-left ltr:text-left rtl:text-right">
 				<h3 id="toast_title" class="font-bold"></h3>
 				<div id="toast_message" class="text-xs"></div>
 			</div>

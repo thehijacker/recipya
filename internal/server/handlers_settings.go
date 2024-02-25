@@ -223,6 +223,12 @@ func (s *Server) settingsBackupsRestoreHandler() http.HandlerFunc {
 	}
 }
 
+func (s *Server) settingsRTLHandler() http.HandlerFunc {
+	return func(w http.ResponseWriter, r *http.Request) {
+		panic("not implemented")
+	}
+}
+
 func (s *Server) settingsTabsAdvancedHandler() http.HandlerFunc {
 	return func(w http.ResponseWriter, r *http.Request) {
 		backups := s.Files.Backups(getUserID(r))

@@ -154,6 +154,7 @@ func (s *Server) mountHandlers() {
 	mux.Handle("POST /settings/convert-automatically", s.mustBeLoggedInMiddleware(s.settingsConvertAutomaticallyPostHandler()))
 	mux.Handle("POST /settings/measurement-system", s.mustBeLoggedInMiddleware(s.settingsMeasurementSystemsPostHandler()))
 	mux.Handle("POST /settings/backups/restore", s.mustBeLoggedInMiddleware(s.settingsBackupsRestoreHandler()))
+	mux.Handle("POST /settings/rtl", s.mustBeLoggedInMiddleware(s.settingsRTLHandler()))
 	mux.Handle("GET /settings/tabs/advanced", s.mustBeLoggedInMiddleware(s.settingsTabsAdvancedHandler()))
 	mux.Handle("GET /settings/tabs/profile", s.mustBeLoggedInMiddleware(settingsTabsProfileHandler()))
 	mux.Handle("GET /settings/tabs/recipes", s.mustBeLoggedInMiddleware(s.settingsTabsRecipesHandler()))
