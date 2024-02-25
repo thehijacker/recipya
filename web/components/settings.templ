@@ -75,7 +75,7 @@ templ settings(data templates.Data) {
 			if data.IsAutologin {
 				@SettingsTabsRecipes(data.Settings)
 			} else {
-				@SettingsTabsProfile()
+				@SettingsTabsProfile(data)
 			}
 		</div>
 	</div>
@@ -220,7 +220,7 @@ templ SettingsTabsRecipes(data templates.SettingsData) {
 	</dialog>
 }
 
-templ SettingsTabsProfile() {
+templ SettingsTabsProfile(data templates.SettingsData) {
 	<div class="mb-4 md:mb-2 md:grid md:grid-cols-2 md:gap-4">
 		<p class="mb-1 font-semibold md:text-end">Change password:</p>
 		<div class="card card-bordered card-compact w-96 bg-base-100 max-w-xs">
@@ -269,6 +269,24 @@ templ SettingsTabsProfile() {
 			</div>
 		</div>
 	</div>
+	<div class="flex mb-4 md:mb-2 md:grid md:grid-cols-2 md:gap-4">
+        <label for="use-rtl" class="mb-1 font-semibold md:text-end">
+            Switch to RTL:
+            <br/>
+            <span class="font-light text-sm md:max-w-96 md:inline-block">
+                When checked, the UI will be displayed in RTL mode. Otherwise, LTR.
+            </span>
+        </label>
+        <input
+            id="use-rtl"
+            type="checkbox"
+            name="use-rtl"
+            checked?={ data.UserSettings.IsRTL }
+            class="checkbox"
+            hx-post="/settings/use-rtl"
+            hx-trigger="click"
+        />
+    </div>
 	<div class="mb-2 grid grid-cols-2 gap-4">
 		<p class="mb-1 font-semibold md:text-end">
 			Delete Account:
